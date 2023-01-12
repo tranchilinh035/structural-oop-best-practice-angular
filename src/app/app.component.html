@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <span 
+        id="elementShowEditStudentInformation" 
+        #elementShowEditStudentInformation 
+        data-toggle="modal" 
+        data-target="#editStudentInformation"
+    ></span>
+
+    <h3 style="margin-bottom: 12px;">
+        Danh sách lớp học:
+        <b>{{listClass.length}} lớp</b>
+    </h3>
+
+    <div *ngIf="isLoading.ngOnInitComponent; else templateListClass" class="wrapper-loading-spinner loading-profiles">
+        <div class="spinner-grow" role="status"></div>
+        <span class="spinner-grow-text">Loading...</span>
+    </div>
+
+    <ng-template #templateListClass>
+        <ng-container>
+            <div style="max-height: 80vh;overflow: auto;">
+                <table class="table">
+                    <thead style="background-color: #f9f9f9;">
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên lớp</th>
+                            <th scope="col">Sỉ số</th>
+                            <th scope="col">Xem danh sách học sinh</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+                        <app-class-management style="display: contents" *ngFor="let class of listClass; let i = index" [class]="class" [count]="i"></app-class-management>
+                    </tbody>
+                </table>
+            </div>
+        </ng-container>
+    </ng-template>
+</div>

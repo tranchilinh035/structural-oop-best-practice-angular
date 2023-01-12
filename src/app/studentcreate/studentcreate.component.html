@@ -1,0 +1,65 @@
+<!-- Modal sửa học sinh -->
+<div class="modal show" *ngIf="studentCreate != null" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="display: flex; flex-direction: column;">
+          <div style="display: flex; align-items: center;justify-content: space-between;padding: 0 18px;">
+              <h3 class="title-add-extension-profile">
+                  Thêm học sinh: {{studentCreate.name}}
+              </h3>
+          </div>
+          
+          <div data-dismiss="modal" aria-label="Close"></div>
+          <div class="modal-body">
+              <div>
+                  <div class="form-value">
+                      <label class="form-value-label">
+                          Tên học sinh:
+                      </label>
+
+                      <input
+                          type="text" 
+                          class="form-control form-value-input" 
+                          placeholder="Aa..."
+                          [(ngModel)]="studentCreate.name"
+                      >
+                  </div>
+
+                  <div class="form-value">
+                      <label class="form-value-label">
+                          Giới tính:
+                      </label>
+                      <select 
+                          class="form-select" 
+                          [(ngModel)]="studentCreate.gender"
+                      >
+                          <option value="Nam" selected>Nam</option>
+                          <option value="Nữ">Nữ</option>
+                      </select>
+                  </div>
+
+                  <div class="form-value">
+                      <label class="form-value-label">
+                          Ngày sinh:
+                      </label>
+                      <input type="date" #myDate [value]="studentCreate.dob | date:'yyyy-MM-dd'" (input)="studentCreate.dob=parseDate($event.target.value)" />
+                  </div>
+              </div>
+          </div>
+
+          <div class="modal-footer" style="text-align: right">
+              <button 
+                 class="btn btn-default"
+                 (click)="closeModal()"
+              >
+                 Huỷ
+              </button>
+              <button 
+                 class="btn btn-primary"
+                 (click)="handleCreateStudent()"
+              >
+                 Thêm học sinh
+              </button>
+          </div>
+      </div>
+  </div>
+</div>

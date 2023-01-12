@@ -1,0 +1,65 @@
+.wrapper {
+    margin: 28px;
+}
+
+.table {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow-y: scroll;
+}
+
+.btn {
+    margin: 0 2px;
+}
+
+.btn-default {
+    outline: none;
+}
+
+.btn-default:hover {
+    background-color: #ccc;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    background: lightgray;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2269f5;
+    border-radius: 2px;
+}
+
+.form-value {
+    display: flex;
+    align-items: center;
+    margin: 12px;
+}
+.form-value-label {
+    width: 128px;
+}
+.form-value-input {
+    width: 70%;
+}
+.wrapper-loading-spinner {
+    display: flex;
+    align-items: center;
+    color: #2269f4;
+}
+
+.spinner-grow {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    background-color: currentColor;
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-animation: .75s linear infinite spinner-grow;
+    animation: .75s linear infinite spinner-grow;
+}
+
+.spinner-grow-text {
+    margin-left: 8px;
+}
