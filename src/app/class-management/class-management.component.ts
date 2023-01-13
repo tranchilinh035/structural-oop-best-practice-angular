@@ -12,29 +12,29 @@ import { StudentDeleteDTO } from 'src/dtomodel/student-delete-dto';
 import { StudentcreateComponent } from '../studentcreate/studentcreate.component';
 
 @Component({
-  selector: 'app-class-management',
-  templateUrl: './class-management.component.html',
-  styleUrls: ['./class-management.component.css']
+	selector: 'app-class-management',
+	templateUrl: './class-management.component.html',
+	styleUrls: ['./class-management.component.css']
 })
 export class ClassManagementComponent implements OnInit {
-  @Input() class: _Class;
-  @Input() count: number;
-  @ViewChild(StudenteditComponent) studentEditComponent: StudenteditComponent;
-  @ViewChild(StudentcreateComponent) studentCreateComponent: StudentcreateComponent;
+	@Input() class: _Class;
+	@Input() count: number;
+	@ViewChild(StudenteditComponent) studentEditComponent: StudenteditComponent;
+	@ViewChild(StudentcreateComponent) studentCreateComponent: StudentcreateComponent;
 
-  constructor(private busInformationAllClassService: BusInformationAllClassService) { }
+	constructor(private busInformationAllClassService: BusInformationAllClassService) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  public checkAllStudent(event: any) {
+	public checkAllStudent(event: any) {
 		let isChecked = event.target.checked
 		for (let i = 0; i < this.class.students.length; i++) {
 			this.class.students[i].checked = isChecked
 		}
 	}
 
-  public async handleAllDeleteStudentChecked() {
+	public async handleAllDeleteStudentChecked() {
 		if (this.class.students.length === 0) {
 			ToastControl.showWarningToast('Lớp học không có học sinh');
 			return;
@@ -56,19 +56,19 @@ export class ClassManagementComponent implements OnInit {
 		SweetalertControl.endLoading();
 	}
 
-  public async handleDeleteStudent(student: Student, showConfirm = true) {
+	public async handleDeleteStudent(student: Student, showConfirm = true) {
 		if (showConfirm) {
 			if (!confirm(`Bạn có chắc muốn xoá học sinh ${student.name}?`)) {
 				return;
 			}
 			SweetalertControl.startLoading('Đang xoá...', '');
 		}
-		
+
 		try {
 			let dtoControl: DTOControl = new DTOControl();
 			let studentDeleteDTO: StudentDeleteDTO = dtoControl.getStudentDeleteDTO(student);
 
-			await this.busInformationAllClassService.deleteStudent(studentDeleteDTO); 
+			await this.busInformationAllClassService.deleteStudent(studentDeleteDTO);
 
 			this.class.students = this.class.students.filter(std => std.id !== student.id);
 
@@ -81,11 +81,11 @@ export class ClassManagementComponent implements OnInit {
 		}
 	}
 
-  public showModalEditStudent(student: Student) {
-    this.studentEditComponent.setStudent(student);
-  }
+	public showModalEditStudent(student: Student) {
+		this.studentEditComponent.setStudent(student);
+	}
 
 	public showModalCreateStudent() {
-    this.studentCreateComponent.openModal();
-  }
+		this.studentCreateComponent.openModal();
+	}
 }

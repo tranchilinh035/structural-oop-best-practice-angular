@@ -7,7 +7,7 @@ export class Student {
     private _class: _Class = new _Class();
     private _checked: boolean = false;
 
-    constructor() {}
+    constructor() { }
 
     get id(): number {
         return this._id;

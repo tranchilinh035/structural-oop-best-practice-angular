@@ -1,10 +1,6 @@
 <div class="wrapper">
-    <span 
-        id="elementShowEditStudentInformation" 
-        #elementShowEditStudentInformation 
-        data-toggle="modal" 
-        data-target="#editStudentInformation"
-    ></span>
+    <span id="elementShowEditStudentInformation" #elementShowEditStudentInformation data-toggle="modal"
+        data-target="#editStudentInformation"></span>
 
     <h3 style="margin-bottom: 12px;">
         Danh sách lớp học:
@@ -28,9 +24,10 @@
                             <th scope="col">Xem danh sách học sinh</th>
                         </tr>
                     </thead>
-            
+
                     <tbody>
-                        <app-class-management style="display: contents" *ngFor="let class of listClass; let i = index" [class]="class" [count]="i"></app-class-management>
+                        <app-class-management style="display: contents" *ngFor="let class of listClass; let i = index"
+                            [class]="class" [count]="i"></app-class-management>
                     </tbody>
                 </table>
             </div>

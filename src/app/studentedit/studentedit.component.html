@@ -1,5 +1,6 @@
 <!-- Modal sửa học sinh -->
-<div class="modal show" *ngIf="studentEditable != null" #editStudentInformation tabindex="-1" role="dialog" aria-labelledby="editStudentInformationLabel" aria-hidden="true">
+<div class="modal show" *ngIf="studentEditable != null" #editStudentInformation tabindex="-1" role="dialog"
+    aria-labelledby="editStudentInformationLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="display: flex; flex-direction: column;">
             <div style="display: flex; align-items: center;justify-content: space-between;padding: 0 18px;">
@@ -7,7 +8,7 @@
                     Chỉnh sửa học sinh: {{studentEditable.name}}
                 </h3>
             </div>
-            
+
             <div data-dismiss="modal" aria-label="Close"></div>
             <div class="modal-body">
                 <div>
@@ -16,12 +17,8 @@
                             Tên học sinh:
                         </label>
 
-                        <input
-                            type="text" 
-                            class="form-control form-value-input" 
-                            placeholder="Aa..."
-                            [(ngModel)]="studentEditable.name"
-                        >
+                        <input type="text" class="form-control form-value-input" placeholder="Aa..."
+                            [(ngModel)]="studentEditable.name">
                     </div>
 
                     <div class="form-value">
@@ -29,22 +26,15 @@
                             Điểm TB:
                         </label>
 
-                        <input
-                            type="text" 
-                            class="form-control form-value-input" 
-                            placeholder="Aa..."
-                            [(ngModel)]="studentEditable.average_score"
-                        >
+                        <input type="text" class="form-control form-value-input" placeholder="Aa..."
+                            [(ngModel)]="studentEditable.average_score">
                     </div>
 
                     <div class="form-value">
                         <label class="form-value-label">
                             Giới tính:
                         </label>
-                        <select 
-                            class="form-select" 
-                            [(ngModel)]="studentEditable.gender"
-                        >
+                        <select class="form-select" [(ngModel)]="studentEditable.gender">
                             <option value="Nam" selected>Nam</option>
                             <option value="Nữ">Nữ</option>
                         </select>
@@ -54,23 +44,18 @@
                         <label class="form-value-label">
                             Ngày sinh:
                         </label>
-                        <input type="date" #myDate [value]="studentEditable.dob | date:'yyyy-MM-dd'" (input)="studentEditable.dob=parseDate($event.target.value)" />
+                        <input type="date" #myDate [value]="studentEditable.dob | date:'yyyy-MM-dd'"
+                            (input)="studentEditable.dob=parseDate($event.target.value)" />
                     </div>
                 </div>
             </div>
 
             <div class="modal-footer" style="text-align: right">
-                <button 
-                   class="btn btn-default"
-                   (click)="closeModalEditStudentInformation()"
-                >
-                   Huỷ
+                <button class="btn btn-default" (click)="closeModalEditStudentInformation()">
+                    Huỷ
                 </button>
-                <button 
-                   class="btn btn-primary"
-                   (click)="handleEditStudent()"
-                >
-                   Sửa
+                <button class="btn btn-primary" (click)="handleEditStudent()">
+                    Sửa
                 </button>
             </div>
         </div>

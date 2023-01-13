@@ -17,15 +17,15 @@ import { _Class } from "src/model/_Class";
 })
 export class AppComponent implements OnInit {
 	public listClass: _Class[] = [];
-	
-	
+
+
 	public isLoading = {
 		ngOnInitComponent: true,
 	}
-	
+
 	constructor(
 		private busInformationAllClassService: BusInformationAllClassService
-	) {}
+	) { }
 
 	async ngOnInit() {
 		await this.getListInformationClass();

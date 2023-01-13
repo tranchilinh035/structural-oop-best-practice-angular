@@ -14,14 +14,14 @@ export class BusInformationAllClassService {
     constructor(
         private daoInformationAllClassService: DaoInformationAllClassService,
         private busStudentService: BusStudentService
-    ) {}
+    ) { }
 
     get listClass(): _Class[] {
         return this._listClass;
     }
 
     public async getListInformationClass(idUser: number): Promise<_Class[]> {
-        let resGetListInformationClass: any = await this.daoInformationAllClassService.getListInformationClass({id_user: idUser});
+        let resGetListInformationClass: any = await this.daoInformationAllClassService.getListInformationClass({ id_user: idUser });
         let result = JSON.parse(resGetListInformationClass.data);
         if (!(result.status === 'success')) {
             throw result.message;

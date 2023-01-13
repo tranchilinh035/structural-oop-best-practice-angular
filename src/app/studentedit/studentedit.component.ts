@@ -18,9 +18,9 @@ import { DatePipe } from '@angular/common';
 export class StudenteditComponent implements OnInit {
   public student: Student;
   public studentEditable: Student;
-  
+
   constructor(private busInformationAllClassService: BusInformationAllClassService,
-              private datePipe: DatePipe) { }
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
 
@@ -32,16 +32,16 @@ export class StudenteditComponent implements OnInit {
   }
 
   public closeModalEditStudentInformation() {
-		this.studentEditable = null;
-	}
+    this.studentEditable = null;
+  }
 
   public async handleEditStudent() {
-		SweetalertControl.startLoading('Đang thay đổi...', '');
-		try {
+    SweetalertControl.startLoading('Đang thay đổi...', '');
+    try {
       let dtoControl: DTOControl = new DTOControl();
       let studentEditDTO: StudentEditDTO = dtoControl.getStudentEditDTO(this.studentEditable);
 
-			await this.busInformationAllClassService.editStudent(studentEditDTO);
+      await this.busInformationAllClassService.editStudent(studentEditDTO);
 
       this.student.dob = this.studentEditable.dob;
       this.student.gender = this.studentEditable.gender;
@@ -49,17 +49,17 @@ export class StudenteditComponent implements OnInit {
 
       ToastControl.showSuccessToast('Sửa đổi học sinh thành công');
       this.closeModalEditStudentInformation();
-		} catch (error) {
-			ToastControl.showErrorToast(Utils.getMessageError(error), 'Xảy ra lỗi khi thay đổi thông tin học sinh.')
-		}
-		SweetalertControl.endLoading();
-	}
+    } catch (error) {
+      ToastControl.showErrorToast(Utils.getMessageError(error), 'Xảy ra lỗi khi thay đổi thông tin học sinh.')
+    }
+    SweetalertControl.endLoading();
+  }
 
   public parseDate(dateString: string) {
-		if (dateString) {
-			let date = new Date(dateString);
-			return this.datePipe.transform(date, 'MM/dd/yyyy');
-		}
-		return null;
-	}
+    if (dateString) {
+      let date = new Date(dateString);
+      return this.datePipe.transform(date, 'MM/dd/yyyy');
+    }
+    return null;
+  }
 }

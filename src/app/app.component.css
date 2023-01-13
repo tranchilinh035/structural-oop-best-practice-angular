@@ -36,12 +36,15 @@
     align-items: center;
     margin: 12px;
 }
+
 .form-value-label {
     width: 128px;
 }
+
 .form-value-input {
     width: 70%;
 }
+
 .wrapper-loading-spinner {
     display: flex;
     align-items: center;

@@ -4,8 +4,8 @@ export class _Class {
     private _id: number;
     private _name: string = '';
     private _students: Student[] = [];
-    
-    constructor() {}
+
+    constructor() { }
 
     get id(): number {
         return this._id;

@@ -1,87 +1,80 @@
-
 <tr>
-  <td>{{count+1}}</td>
-  <td>{{class.name}}</td>
-  <td>{{class.students.length}}</td>
-  <td>
-      <button class="btn" data-toggle="modal" [attr.data-target]="'#myModal' + count">Xem</button>
-  </td>
+    <td>{{count+1}}</td>
+    <td>{{class.name}}</td>
+    <td>{{class.students.length}}</td>
+    <td>
+        <button class="btn" data-toggle="modal" [attr.data-target]="'#myModal' + count">Xem</button>
+    </td>
 </tr>
 
 
 <!-- Modal xem ds học sinh -->
-<div class="modal fade" id="myModal{{count}}" tabindex="-1" role="dialog" aria-labelledby="seeListOfStudentsLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content" style="display: flex; flex-direction: column;">
-          <div style="display: flex; align-items: center;justify-content: space-between;padding: 0 18px;">
-              <h3 class="title-add-extension-profile">Danh sách học sinh: {{class.name}}</h3>
-              <h3 class="title-add-extension-profile">Số lượng học sinh: <b>{{class.students.length}}</b></h3>
-          </div>
-          <div id="closeSeeListOfStudents" #closeSeeListOfStudents data-dismiss="modal" aria-label="Close"></div>
-          <div class="modal-body">
-              <div *ngIf="class.students.length === 0; else templateListStudent" style="display: flex; align-items: center; justify-content: center;">
-                  <h3>{{'Lớp ' + '"' + class.name + '"' + ' Chưa có học sinh nào.'}}</h3>
-              </div>
+<div class="modal fade" id="myModal{{count}}" tabindex="-1" role="dialog" aria-labelledby="seeListOfStudentsLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center;justify-content: space-between;padding: 0 18px;">
+                <h3 class="title-add-extension-profile">Danh sách học sinh: {{class.name}}</h3>
+                <h3 class="title-add-extension-profile">Số lượng học sinh: <b>{{class.students.length}}</b></h3>
+            </div>
+            <div id="closeSeeListOfStudents" #closeSeeListOfStudents data-dismiss="modal" aria-label="Close"></div>
+            <div class="modal-body">
+                <div *ngIf="class.students.length === 0; else templateListStudent"
+                    style="display: flex; align-items: center; justify-content: center;">
+                    <h3>{{'Lớp ' + '"' + class.name + '"' + ' Chưa có học sinh nào.'}}</h3>
+                </div>
 
-              <ng-template #templateListStudent>
-                  <ng-container>
-                      <div style="max-height: 400px;overflow: auto;">
-                          <table class="table">
-                              <thead style="background-color: #f9f9f9;">
-                                  <tr>
-                                      <th scope="col">STT</th>
-                                      <th scope="col">
-                                          <input
-                                              type="checkbox" 
-                                              value="" 
-                                              (click)="checkAllStudent($event)"
-                                          >
-                                      </th>
-                                      <th scope="col">Tên</th>
-                                      <th scope="col">Giới tính</th>
-                                      <th scope="col">Ngày sinh</th>
-                                      <th scope="col"></th>
-                                  </tr>
-                              </thead>
-                      
-                              <tbody>
-                                  <tr *ngFor="let student of class.students; let i = index">
-                                      <td>{{i+1}}</td>
-                                      <td>
-                                          <input type="checkbox" value="" [(ngModel)]="student.checked">
-                                      </td>
-                                      <td>{{student.name}}</td>
-                                      <td>{{student.gender}}</td>
-                                      <td>{{student.dob}}</td>
-                                      <td>
-                                          <button class="btn btn-default" (click)="handleDeleteStudent(student)">Xoá</button>
-                                          <button class="btn btn-default" data-toggle="modal" (click)="showModalEditStudent(student)">Sửa</button>
-                                      </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </ng-container>
-              </ng-template>
-          </div>
+                <ng-template #templateListStudent>
+                    <ng-container>
+                        <div style="max-height: 400px;overflow: auto;">
+                            <table class="table">
+                                <thead style="background-color: #f9f9f9;">
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">
+                                            <input type="checkbox" value="" (click)="checkAllStudent($event)">
+                                        </th>
+                                        <th scope="col">Tên</th>
+                                        <th scope="col">Giới tính</th>
+                                        <th scope="col">Ngày sinh</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
 
-          <div class="modal-footer" style="text-align: right">
-              <button 
-                 class="btn btn-default"
-                 (click)="handleAllDeleteStudentChecked()"
-              >
-                 Xoá
-              </button>
+                                <tbody>
+                                    <tr *ngFor="let student of class.students; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <input type="checkbox" value="" [(ngModel)]="student.checked">
+                                        </td>
+                                        <td>{{student.name}}</td>
+                                        <td>{{student.gender}}</td>
+                                        <td>{{student.dob}}</td>
+                                        <td>
+                                            <button class="btn btn-default"
+                                                (click)="handleDeleteStudent(student)">Xoá</button>
+                                            <button class="btn btn-default" data-toggle="modal"
+                                                (click)="showModalEditStudent(student)">Sửa</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-container>
+                </ng-template>
+            </div>
 
-              <button 
-                 class="btn btn-primary"
-                 (click)="showModalCreateStudent()"
-              >
-                 Thêm học sinh
-              </button>
-          </div>
-      </div>
-  </div>
+            <div class="modal-footer" style="text-align: right">
+                <button class="btn btn-default" (click)="handleAllDeleteStudentChecked()">
+                    Xoá
+                </button>
+
+                <button class="btn btn-primary" (click)="showModalCreateStudent()">
+                    Thêm học sinh
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <app-studentcreate [class]="class"></app-studentcreate>

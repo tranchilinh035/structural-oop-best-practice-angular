@@ -19,10 +19,10 @@ export class StudentcreateComponent implements OnInit {
   @Input() class: _Class;
 
   constructor(private busInformationAllClassService: BusInformationAllClassService,
-              private datePipe: DatePipe) { }
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
-    
+
   }
 
   public openModal() {
@@ -34,43 +34,43 @@ export class StudentcreateComponent implements OnInit {
   }
 
   public parseDate(dateString: string) {
-		if (dateString) {
-			let date = new Date(dateString);
-			return this.datePipe.transform(date, 'MM/dd/yyyy');
-		}
-		return null;
-	}
-  
+    if (dateString) {
+      let date = new Date(dateString);
+      return this.datePipe.transform(date, 'MM/dd/yyyy');
+    }
+    return null;
+  }
+
   private validateFormAddStudent() {
-		let {name, dob, gender} = this.studentCreate;
-		if (!name.trim() || !dob || !gender) {
-			ToastControl.showWarningToast('Vui lòng đền đầy đủ các field!');
-			return false;
-		}
-		let date = new Date(dob);
-		if (date.getTime() >= (new Date()).getTime()) {
-			ToastControl.showWarningToast('Không chọn ngày tương lai cho ngày sinh!');
-			return false;
-		}
-		return true;
-	}
+    let { name, dob, gender } = this.studentCreate;
+    if (!name.trim() || !dob || !gender) {
+      ToastControl.showWarningToast('Vui lòng đền đầy đủ các field!');
+      return false;
+    }
+    let date = new Date(dob);
+    if (date.getTime() >= (new Date()).getTime()) {
+      ToastControl.showWarningToast('Không chọn ngày tương lai cho ngày sinh!');
+      return false;
+    }
+    return true;
+  }
 
   public async handleCreateStudent() {
     let isValidateFormAddStudent = this.validateFormAddStudent();
-		if (!isValidateFormAddStudent) {
-			return;
-		}
+    if (!isValidateFormAddStudent) {
+      return;
+    }
 
     SweetalertControl.startLoading('Đang thêm học sinh...', '');
-		try {
+    try {
 
       let dtoControl: DTOControl = new DTOControl();
       let studentCreateDTO: StudentCreateDTO = dtoControl.getStudentCreateDTO(this.studentCreate);
 
       let student: Student = await this.busInformationAllClassService.createStudent(studentCreateDTO);
-  
+
       this.class.students.push(student);
-    
+
       ToastControl.showSuccessToast('Thêm học sinh thành công');
 
       this.closeModal();

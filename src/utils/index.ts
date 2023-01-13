@@ -1,7 +1,7 @@
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 // import {Profile} from "../../model/Profile";
 
-export class Utils{
+export class Utils {
     public static app = (<any>window).require('electron').remote.app;
     public static userAppDataPath = Utils.app.getPath('userData');
     // public static listProfileRunning: Array<Profile> = new Array<Profile>();
@@ -46,7 +46,7 @@ export class Utils{
         } catch (e) {
             error += e.toString();
         }
-        
+
         return `${this.translate.instant("an_error_occurred")}: ${error}`;
     }
 
@@ -88,7 +88,7 @@ export class Utils{
         return array[random];
     }
 
-    public static shuffleArr(array){
+    public static shuffleArr(array) {
         for (var i = array.length - 1; i > 0; i--) {
             var rand = Math.floor(Math.random() * (i + 1));
             [array[i], array[rand]] = [array[rand], array[i]]
@@ -117,29 +117,29 @@ export class Utils{
         };
     }
 
-    public static getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    public static getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
         var R = 6371; // Radius of the earth in km
-        var dLat = Utils.deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = Utils.deg2rad(lon2-lon1);
+        var dLat = Utils.deg2rad(lat2 - lat1);  // deg2rad below
+        var dLon = Utils.deg2rad(lon2 - lon1);
         var a =
-            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
             Math.cos(Utils.deg2rad(lat1)) * Math.cos(Utils.deg2rad(lat2)) *
-            Math.sin(dLon/2) * Math.sin(dLon/2)
-        ;
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            Math.sin(dLon / 2) * Math.sin(dLon / 2)
+            ;
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c; // Distance in km
 
         return d;
     }
 
     public static deg2rad(deg) {
-        return deg * (Math.PI/180)
+        return deg * (Math.PI / 180)
     }
-    
+
     public static listKeyErrorNetwork = ['ERR_TIMED_OUT', 'ERR_INTERNET_DISCONNECTED']
     public static getMessageError(error: any): string {
         try {
-            let errorMsg = '';            
+            let errorMsg = '';
             if (typeof error.message === 'string') {
                 errorMsg = error.message;
             } else if (typeof error === 'string') {
@@ -166,7 +166,7 @@ export class Utils{
             return error.message || 'Lỗi ngoại lệ!';
         }
     }
-    
+
     public static cutStringEnd(orginal: string, startString: string, endString: string): string {
         let result = orginal.split(startString)[1];
         if (!result) return orginal;

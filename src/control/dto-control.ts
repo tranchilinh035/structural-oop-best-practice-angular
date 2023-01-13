@@ -31,7 +31,7 @@ export class DTOControl {
         studentCreateDTO.id_class = student.class.id;
         studentCreateDTO.id_user = Constant.USER_ID;
         studentCreateDTO.gender = student.gender;
-        
+
         return studentCreateDTO;
     }
 }
