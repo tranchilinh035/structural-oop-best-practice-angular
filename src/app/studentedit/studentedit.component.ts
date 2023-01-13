@@ -9,6 +9,7 @@ import { DTOControl } from '../../control/dto-control';
 import { StudentEditDTO } from 'src/dtomodel/student-edit-dto';
 import { StudentEditDTO2 } from 'src/dtomodel/student-edit2-dto';
 import { DatePipe } from '@angular/common';
+import { _Class } from 'src/model/_Class';
 
 @Component({
   selector: 'app-studentedit',
@@ -16,6 +17,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./studentedit.component.css']
 })
 export class StudenteditComponent implements OnInit {
+  @Input() class: _Class;
+
   public student: Student;
   public studentEditable: Student;
 
@@ -43,9 +46,8 @@ export class StudenteditComponent implements OnInit {
 
       await this.busInformationAllClassService.editStudent(studentEditDTO);
 
-      this.student.dob = this.studentEditable.dob;
-      this.student.gender = this.studentEditable.gender;
-      this.student.name = this.studentEditable.name;
+      let index = this.class.students.map(student => student.id).indexOf(this.studentEditable.id);
+      this.class.students[index] = this.studentEditable;
 
       ToastControl.showSuccessToast('Sửa đổi học sinh thành công');
       this.closeModalEditStudentInformation();
